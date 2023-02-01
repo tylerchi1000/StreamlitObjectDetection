@@ -19,7 +19,7 @@ from ultralytics import YOLO
 import matplotlib.pyplot as plt
 
 HOME = os.getcwd()
-model = YOLO(f'{HOME}/CustomObjectDetection/best.pt')
+model = YOLO(f'{HOME}/best.pt')
 
 #https://inside-machinelearning.com/en/bounding-boxes-python-function/
 #Made adjustments to solve cv2 crashing python kernal, and to plot the image inline
@@ -69,7 +69,7 @@ def box_label(image, box, label='', color=(128, 128, 128), txt_color=(255, 255, 
                 thickness=tf,
                 lineType=cv2.LINE_AA)
 
-image = Image.open(f'{HOME}/CustomObjectDetection/assets/istockphoto-157280471-1024x1024.jpg')
+image = Image.open(f'{HOME}/assets/istockphoto-157280471-1024x1024.jpg')
 img = np.array(image)
 results = model.predict(source = image)
 
