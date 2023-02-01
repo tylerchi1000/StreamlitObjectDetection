@@ -15,8 +15,8 @@ from ultralytics import YOLO
 #HOME = os.getcwd()
 model = YOLO('./best.pt')
 
-#https://inside-machinelearning.com/en/bounding-boxes-python-function/
-#Made adjustments to solve cv2 crashing python kernal, and to plot the image inline
+# #https://inside-machinelearning.com/en/bounding-boxes-python-function/
+# #Made adjustments to solve cv2 crashing python kernal, and to plot the image inline
 def plot_bboxes(image, boxes, labels=[], colors=[], score=True, conf=None):
   #Define COCO Labels
   if labels == []:
@@ -63,13 +63,21 @@ def box_label(image, box, label='', color=(128, 128, 128), txt_color=(255, 255, 
                 thickness=tf,
                 lineType=cv2.LINE_AA)
 
+
+
+st.title('Raspberry Custom Object Detection')
+st.sidebar.title('Github')
+st.sidebar.markdown("https://github.com/tylerchi1000/StreamlitObjectDetection")
+st.sidebar.markdown("Upload an image (jpg) to run the model and generate bounding boxes.")
+
+#Set confidence threshold
+conf = st.sidebar.slider('Confidence Threshold', 0.0, 1.0, 0.2, 0.1)
+
 image = Image.open('./assets/istockphoto-157280471-1024x1024.jpg')
 img = np.array(image)
-results = model.predict(source = image)
-
-#Output the image with bounding boxes
-st.title('Raspberry Custom Object Detection')
-plot_bboxes(img, results[0].boxes.boxes,  conf=0.2)
+results = model.predict(source=image)
+# #Output the image with bounding boxes
+plot_bboxes(img, results[0].boxes.boxes,  conf=conf)
 
 #Write upload image
 uploaded_file = st.file_uploader("Choose an image...", type="jpg")
@@ -79,10 +87,7 @@ if uploaded_file is not None:
     image = Image.open(uploaded_file)
     img = np.array(image)
     results = model.predict(source = image)
-    plot_bboxes(img, results[0].boxes.boxes,  conf=0.2)
-
-
-
+    plot_bboxes(img, results[0].boxes.boxes,  conf=conf)
 
 #Output graphs and dataframe
 def create_graphs(results):
@@ -101,7 +106,43 @@ axs[0].set_title('Distribution of Confidence')
 sns.histplot(df['cls'], kde=False, bins=2, ax=axs[1])
 axs[1].set_title('Distribution of Type')
 
+#Plot graphs
 st.pyplot(fig3)
 
 #Output Dataframe
 st.dataframe(df)
+
+#Download button for dataframe
+with st.sidebar:
+  @st.cache
+  def convert_df(df):
+      # IMPORTANT: Cache the conversion to prevent computation on every rerun
+      return df.to_csv().encode('utf-8')
+
+  csv = convert_df(df)
+
+  st.download_button(
+      label="Download data as CSV",
+      data=csv,
+      file_name='inference.csv',
+      mime='text/csv',
+)
+
+#Download button for image
+with st.sidebar:
+  @st.cache
+  def convert_img(img):
+      # IMPORTANT: Cache the conversion to prevent computation on every rerun
+      img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+      return cv2.imencode('.jpg', img)[1].tobytes()
+
+  jpg = convert_img(img)
+
+  st.download_button(
+      label="Download image",
+      data=jpg,
+      file_name='inference.jpg',
+      mime='image/jpg',
+)
+
+st.sidebar.markdown("This model was trained on 30 images with data augementation. Additional images would likely improve the model's performance. If you would like to contribute images check out RoboFlow and my dataset https://app.roboflow.com/tyler-chinn-xnddb/fruit-detection-sample/3")
