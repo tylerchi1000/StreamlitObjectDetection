@@ -1,8 +1,9 @@
-![GitHub repo size](https://img.shields.io/github/repo-size/https://github.com/tylerchi1000/StreamlitObjectDetection
+![GitHub repo size](https://img.shields.io/github/repo-size/https://github.com/tylerchi1000/StreamlitObjectDetection)
 ![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://tylerchi1000-streamlitobjectdetection-home-9ldy0p.streamlit.app/)
 Badge [source](https://shields.io/)
 
 #Raspberry Object Detection
+
 Train and detect bounding boxes for raspberries and app for streamlit webservice
 [Link to Streamlit](https://tylerchi1000-streamlitobjectdetection-home-9ldy0p.streamlit.app/)
 
@@ -28,7 +29,7 @@ This app uses object detection to create bounding boxes for both ripe and unripe
 
 ## Data source
 
-I self labeled images and hosted them on [RoboFlow](###roboflow url)
+I self labeled images and hosted them on [RoboFlow](https://app.roboflow.com/tyler-chinn-xnddb/fruit-detection-sample/3)
 
 ## Tech Stack
 
