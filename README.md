@@ -1,5 +1,6 @@
-![GitHub repo size](https://img.shields.io/github/repo-size/https://github.com/tylerchi1000/StreamlitObjectDetection)
-![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://tylerchi1000-streamlitobjectdetection-home-9ldy0p.streamlit.app/)
+
+![GitHub repo size](https://img.shields.io/github/repo-size/tylerchi1000/StreamlitObjectDetection)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://tylerchi1000-streamlitobjectdetection-home-9ldy0p.streamlit.app/)
 Badge [source](https://shields.io/)
 
 #Raspberry Object Detection
