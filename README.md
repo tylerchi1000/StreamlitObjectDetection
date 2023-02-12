@@ -8,7 +8,7 @@ Badge [source](https://shields.io/)
 Train and detect bounding boxes for raspberries and app for streamlit webservice
 [Link to Streamlit](https://tylerchi1000-streamlitobjectdetection-home-9ldy0p.streamlit.app/)
 
-![Screenshot](Home_Image.jpg)
+![Screenshot](https://github.com/tylerchi1000/StreamlitObjectDetection/blob/main/assets/Home_screenshot.jpg)
 
 ## Authors
 
